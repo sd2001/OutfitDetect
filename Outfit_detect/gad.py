@@ -31,12 +31,12 @@ parser.add_argument('-i')
 
 args=parser.parse_args()
 
-faceProto="opencv_face_detector.pbtxt"
-faceModel="opencv_face_detector_uint8.pb"
-ageProto="age_deploy.prototxt"
-ageModel="age_net.caffemodel"
-genderProto="gender_deploy.prototxt"
-genderModel="gender_net.caffemodel"
+faceProto="./opencv_face_detector.pbtxt"
+faceModel="./opencv_face_detector_uint8.pb"
+ageProto="./age_deploy.prototxt"
+ageModel="./age_net.caffemodel"
+genderProto="./gender_deploy.prototxt"
+genderModel="./gender_net.caffemodel"
 
 MODEL_MEAN_VALUES=(78.4263377603, 87.7689143744, 114.895847746)
 ageList=['(0-2)', '(4-6)', '(8-12)', '(15-20)', '(25-32)', '(38-43)', '(48-53)', '(60-100)']
@@ -79,15 +79,15 @@ while cv2.waitKey(1)<0:
         a=age
 
         cv2.putText(resultImg, f'{gender}, {age}', (faceBox[0], faceBox[1]-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,255,255), 2, cv2.LINE_AA)
-        cv2.imshow("Detecting age and gender", resultImg)
+        # cv2.imshow("Detecting age and gender", resultImg)
 # Disable scientific notation for clarity
 np.set_printoptions(suppress=True)
 
 # Load the model
 if g=='Male':
-    model = tensorflow.keras.models.load_model('male.h5')
+    model = tensorflow.keras.models.load_model('./male.h5')
 else:
-    model = tensorflow.keras.models.load_model('keras_model.h5')
+    model = tensorflow.keras.models.load_model('./keras_model.h5')
     
 
 
@@ -108,7 +108,7 @@ image = ImageOps.fit(image, size, Image.ANTIALIAS)
 image_array = np.asarray(image)
 
 # display the resized image
-image.show()
+# image.show()
 
 # Normalize the image
 normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
