@@ -8,10 +8,7 @@ app = FastAPI(title="Santosh",
                 description="API endpoints for Santosh",
                 version="1.0")
 origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
-    "http://localhost",
-    "http://localhost:8080",
+    "*"
 ]
 app.add_middleware(
     CORSMiddleware,
